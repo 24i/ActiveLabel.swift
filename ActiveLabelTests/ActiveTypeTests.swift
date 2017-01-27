@@ -16,6 +16,7 @@ public func ==(a: ActiveElement, b: ActiveElement) -> Bool {
     case (.mention(let a), .mention(let b)) where a == b: return true
     case (.hashtag(let a), .hashtag(let b)) where a == b: return true
     case (.url(let a), .url(let b)) where a == b: return true
+    case (.mail(let a), .mail(let b)) where a == b: return true
     case (.custom(let a), .custom(let b)) where a == b: return true
     default: return false
     }
@@ -197,6 +198,36 @@ class ActiveTypeTests: XCTestCase {
         XCTAssertEqual(currentElementType, ActiveType.url)
 
         label.text = "google.com"
+        XCTAssertEqual(activeElements.count, 0)
+    }
+    
+    func testMail(){
+        label.text = "test@email.com"
+        XCTAssertEqual(activeElements.count, 1)
+        XCTAssertEqual(currentElementString, "test@email.com")
+        XCTAssertEqual(currentElementType, ActiveType.Mail)
+        
+        label.text = "test@email.com."
+        XCTAssertEqual(activeElements.count, 1)
+        XCTAssertEqual(currentElementString, "test@email.com")
+        XCTAssertEqual(currentElementType, ActiveType.Mail)
+        
+        label.text = "test.test@email.com"
+        XCTAssertEqual(activeElements.count, 1)
+        XCTAssertEqual(currentElementString, "test.test@email.com")
+        XCTAssertEqual(currentElementType, ActiveType.Mail)
+        
+        label.text = "test_test@email.com"
+        XCTAssertEqual(activeElements.count, 1)
+        XCTAssertEqual(currentElementString, "test_test@email.com")
+        XCTAssertEqual(currentElementType, ActiveType.Mail)
+        
+        label.text = "test.test@email.es"
+        XCTAssertEqual(activeElements.count, 1)
+        XCTAssertEqual(currentElementString, "test.test@email.es")
+        XCTAssertEqual(currentElementType, ActiveType.Mail)
+        
+        label.text = "test@email"
         XCTAssertEqual(activeElements.count, 0)
     }
 

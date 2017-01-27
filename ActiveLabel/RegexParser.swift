@@ -15,7 +15,8 @@ struct RegexParser {
     static let urlPattern = "(^|[\\s.:;?\\-\\]<\\(])" +
         "((https?://|www\\.|pic\\.)[-\\w;/?:@&=+$\\|\\_.!~*\\|'()\\[\\]%#,☺]+[\\w/#](\\(\\))?)" +
     "(?=$|[\\s',\\|\\(\\).:;?\\-\\[\\]>\\)])"
-
+    static let mailPattern = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
+    
     private static var cachedRegularExpressions: [String : NSRegularExpression] = [:]
 
     static func getElements(from text: String, with pattern: String, range: NSRange) -> [NSTextCheckingResult]{
