@@ -59,7 +59,7 @@ class ViewController: UIViewController {
                 var atts = attributes
                 switch type {
                 case customType3:
-                    atts[NSFontAttributeName] = isSelected ? UIFont.boldSystemFont(ofSize: 16) : UIFont.boldSystemFont(ofSize: 14)
+                    atts[NSAttributedString.Key.font] = isSelected ? UIFont.boldSystemFont(ofSize: 16) : UIFont.boldSystemFont(ofSize: 14)
                 default: ()
                 }
                 
@@ -84,7 +84,7 @@ class ViewController: UIViewController {
     }
     
     func alert(_ title: String, message: String) {
-        let vc = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let vc = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         vc.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         present(vc, animated: true, completion: nil)
     }
