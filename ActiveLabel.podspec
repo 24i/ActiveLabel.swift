@@ -21,6 +21,6 @@ Pod::Spec.new do |s|
 			* Works as UILabel drop-in replacement
 			* Well tested and documented
 	DESC
-        s.swift_version = '4.2'
+        s.swift_versions = ['5.0', '5.1']
 	s.source_files = 'ActiveLabel/*.swift'
 end
